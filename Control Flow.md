@@ -1,4 +1,4 @@
-**Similarly** to other programming languages, Rust allows control flow via if statements, however, what Rust does differently is that in an if statement, the expression *must* always evaluate to a boolean.
+Similarly to other programming languages, Rust allows control flow via if statements, however, what Rust does differently is that in an if statement, the expression *must* always evaluate to a boolean.
 
 ```rust
 let is_true: bool = true;
