@@ -44,7 +44,7 @@ fn build_user(
 
 A really interesting part about creating structures, is that, if the variable you've created/are assigning into the structure is the same name as the field you're trying to assign to, then you can omit the field itself and just leave the value.
 
-This is called: **The Field Init Shorthand Syntax**
+This is called the: **Field Init Shorthand Syntax**
 
 ```rust
 ...
