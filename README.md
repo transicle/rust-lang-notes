@@ -7,3 +7,4 @@ Each markdown file was originally made using Obsidian :heart:
 3. [Control Flow](https://github.com/transicle/rust-lang-notes/blob/main/Control%20Flow.md)
 4. [Creating and Using Functions](https://github.com/transicle/rust-lang-notes/blob/main/Creating%20and%20Using%20Functions.md)
 5. [Understanding Ownership](https://github.com/transicle/rust-lang-notes/blob/main/Understanding%20Ownership.md)
+5. [Structures](https://github.com/transicle/rust-lang-notes/blob/main/Structures.md)
