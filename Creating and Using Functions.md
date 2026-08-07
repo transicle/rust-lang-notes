@@ -3,13 +3,14 @@ Rust uses a simple ***`snake_case`*** style for function names.
 Similarly to variables, the Rust compiler can infer what you are intending to do with types if specified properly.
 
 ```rust
-fn main()
-{
+fn main() {
 	my_func(1, 2);
 }
 
-fn my_func(x: i32, y: 32)
-{
+fn my_func(
+	x: i32,
+	y: 32
+) {
 	println!("Another function!");
 	
 	println!("X: {x}, Y: {y}");
@@ -23,15 +24,13 @@ We are able to create functions that return a value a few different ways in Rust
 An implicit return is where: On the last line in a function implementation, you omit the semicolon and the return keyword, leaving just what you want to return, an expression. The type of what you want to return, *must* match the return type of the function itself.
 
 ```rust
-fn main()
-{
+fn main() {
 	let x: i32 = my_func();
 	
 	println!("X: {x}");
 }
 
-fn my_func() -> i32
-{
+fn my_func() -> i32 {
 	let x = 1;
 	let y = 2;
 	
