@@ -8,3 +8,4 @@ Each markdown file was originally made using Obsidian :heart:
 4. [Creating and Using Functions](https://github.com/transicle/rust-lang-notes/blob/main/Creating%20and%20Using%20Functions.md)
 5. [Understanding Ownership](https://github.com/transicle/rust-lang-notes/blob/main/Understanding%20Ownership.md)
 5. [Structures](https://github.com/transicle/rust-lang-notes/blob/main/Structures.md)
+5. [Enums](https://github.com/transicle/rust-lang-notes/blob/main/Enums.md)
