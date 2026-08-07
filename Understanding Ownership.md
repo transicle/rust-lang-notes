@@ -20,8 +20,7 @@ Unlike the stack, the heap is dynamically allocated and can grow/shrink at runti
 ---
 
 ```rust
-fn main()
-{
+fn main() {
 	let x = 5;
 	let y = x; // Copy
 	
@@ -37,8 +36,7 @@ The code about would error because of the following: ***`value borrowed here aft
 To write this code properly, we need to call a clone, which creates a copy of this, allowing us to be able to use ***`s1`*** and ***`s2`*** effectively.
 
 ```rust
-fn main()
-{
+fn main() {
 	...
 	
 	let s1 = String::from("Hello"); // Allocated on the heap
@@ -53,8 +51,7 @@ fn main()
 An important thing to note, is when you pass a parameter into a function, it's essentially the same as assigning a value to another variable.
 
 ```rust
-fn main()
-{
+fn main() {
 	let s = String::from("Hello");
 	
 	takes_ownership(s);
@@ -76,15 +73,13 @@ With integers it's different, instead of transferring ownership, integers create
 This also works the opposite way, we can define a variable, let's say ***`s1`*** that is equal to the return value of the function: ***`gives_ownership`***.
 
 ```rust
-fn main()
-{
+fn main() {
 	let s1 = gives_ownership();
 	
 	println!("{}", s1);
 }
 
-fn gives_ownership() -> String
-{
+fn gives_ownership() -> String {
 	let some_string = String::from("Hello, world!");
 	
 	some_string
@@ -96,8 +91,7 @@ What's different about this is since we're *returning* a value in ***`gives_owne
 Lastly, we're also able to take ownership and give it back to the original owner. Using context from the previous examples, the following *should* be self-explanatory:
 
 ```rust
-fn main()
-{
+fn main() {
 	let s1 = gives_ownership();
 	let s2 = String::from("Hello, world!");
 	let s3 = takes_and_gives_back(s2);
@@ -105,8 +99,7 @@ fn main()
 	println!("s1:{}, s3:{}", s1, s3);
 }
 
-fn gives_ownership() -> String
-{
+fn gives_ownership() -> String {
 	let some_string = String::from("Hello, world!");
 	
 	some_string
@@ -122,8 +115,7 @@ fn takes_and_gives_back(
 ---
 
 ```rust
-fn main()
-{
+fn main() {
 	let s1 = String::from("Hello, world!");
 	let (s2, len) = calculate_length(s1);
 	
@@ -142,8 +134,7 @@ fn calculate_length(
 The example above is clunky and not really idiomatic code, references can actually fix this:
 
 ```rust
-fn main()
-{
+fn main() {
 	let s1 = String::from("Hello, world!");
 	let len = calculate_length(&s1);
 	
@@ -164,8 +155,7 @@ This works a lot cleaner due to us providing a *reference* to a String, rather t
 Passing in references as function parameters is called *borrowing*, it's called that because we borrow the value without actually taking ownership of the argument. Another thing to keep in mind is that they are also immutable by default.
 
 ```rust
-fn main()
-{
+fn main() {
 	let s1 = String::from("Hello, ");
 	
 	change(&s1);
@@ -183,8 +173,7 @@ This will not work, due to the parameter being immutable by default.
 However, if we *do* want to modify the function's parameter like this, we can change it in a few ways.
 
 ```rust
-fn main()
-{
+fn main() {
 	let mut s1 = String::from("Hello, ");
 	
 	change(&mut s1);
@@ -202,8 +191,7 @@ The change function is now able to take in and modify the function's parameter, 
 Mutable reference do have a big restriction: You can only have one mutable reference to a particular piece of data to a particular scope.
 
 ```rust
-fn main()
-{
+fn main() {
 	let mut s = String::from("Hello, world!");
 	
 	let r1 = &mut s;
@@ -219,8 +207,7 @@ fn main()
 The *best* way to fix this problem is to remove the mutability directly.
 
 ```rust
-fn main()
-{
+fn main() {
 	let s = String::from("Hello, world!");
 	
 	let r1 = &s;
@@ -235,8 +222,7 @@ Rust actually *does* let you do this, but only after the scope of the immutable 
 If you declare a variable as mutable, and create immutable references towards them, you cannot create a mutable reference until the last time the immutable references are referenced.
 
 ```rust
-fn main()
-{
+fn main() {
 	let mut s = String::from("Hello, world!");
 	
 	let r1 = &s;
@@ -255,13 +241,11 @@ fn main()
 **Dangling references**: What happens if we have a reference that points to invalid data?
 
 ```rust
-fn main()
-{
+fn main() {
 	let reference_to_nothing: dangle();
 }
 
-fn dangle() -> &String
-{
+fn dangle() -> &String {
 	let s = String::from("Hello, world!");
 	
 	&s
@@ -281,8 +265,7 @@ All functions that return a borrowed value must include a lifetime.
 Slices let you reference a contiguous sequence of elements within a collection, instead of referencing and accessing the entire collection.
 
 ```rust
-fn main()
-{
+fn main() {
 	let mut s = String::from("Hello, world!");
 	
 	// Slices
@@ -315,8 +298,7 @@ fn first_word(
 A cool little, totally optional thing you can do when splicing strings i omit the 1st/last numbers if they refer to the beginning or the end of the string, like this:
 
 ```rust
-fn main()
-{
+fn main() {
 	...
 	
 	let hello = &s[..5]; // Characters 0-4
@@ -329,8 +311,7 @@ fn main()
 Equally, if you omit *both*, it refers to the entire string.
 
 ```rust
-fn main()
-{
+fn main() {
 	...
 	
 	let word = &s[..];
@@ -342,8 +323,7 @@ fn main()
 Now that we're aware of what slices are capable of, let's actually *fix* this function to properly do what we want.
 
 ```rust
-fn main()
-{
+fn main() {
 	let mut s = String::from("Hello, world!");
 	let s2 = "Hello, world!"; // String literals are actually
 							  //  string slices!
@@ -373,11 +353,8 @@ fn first_word(
 One **last** thing. Slices work on regular arrays (shockingly) as well.
 
 ```rust
-fn main()
-{
+fn main() {
 	let a = [1, 2, 3, 4, 5];
 	let slice = &a[..2]; // Type: &[i32]
 }
 ```
-
-Finally. We're done! That wasn't so bad, right?
