@@ -1,5 +1,3 @@
-Each markdown file was originally made using Obsidian :heart:
-
 ### Table of Contents
 
 1. [Variables and Mutability](https://github.com/transicle/rust-lang-notes/blob/main/Variables%20and%20Mutability.md)
