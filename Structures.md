@@ -8,8 +8,7 @@ struct User {
 	active: bool
 }
 
-fn main()
-{
+fn main() {
 	let mut user1 = User {
 		email: String::from("myemail@domain.com"),
 		username: String::from("transicle"),
@@ -65,8 +64,7 @@ fn build_user(
 ```rust
 ...
 
-fn main()
-{
+fn main() {
 	let mut user1 = User {
 		email: String::from("myemail@domain.com"),
 		username: String::from("transicle"),
@@ -89,8 +87,7 @@ Another nice, convenient feature is that we can create new instances of a struct
 ```rust
 ...
 
-fn main()
-{
+fn main() {
 	let mut user1 = User {
 		email: String::from("myemail@domain.com"),
 		username: String::from("transicle"),
@@ -120,8 +117,7 @@ fn main()
 We can also create structs without name fields, these are called tuple structs.
 
 ```rust
-fn main()
-{
+fn main() {
 	struct Color(i32, i32, i32);
 	struct Point(i32, i32, i32);
 }
@@ -139,8 +135,7 @@ struct Rectangle {
 	height: u32
 }
 
-impl Rectangle
-{
+impl Rectangle {
 	fn area(
 		&self
 	) -> u32 {
@@ -149,4 +144,37 @@ impl Rectangle
 }
 
 // Can now call `.area` on a Rectangle instance.
+```
+
+Inside of implementations, we can also create associated functions. Unlike methods, associated functions are not tied to an instance of our structure.
+
+We *could* write the associated function inside of the same implementation block as everything else, but Rust allows us to have multiple implementation blocks for a singular structure.
+
+```rust
+...
+
+impl Rectangle {
+
+	// For associated functions, as it's not apart of
+	//  a singular instance, we do not need to pass `&self`.
+
+	fn square(
+		size: u32
+	) -> Rectangle {
+		Rectangle {
+			width: size,
+			height: size
+		}
+	}
+}
+```
+
+The best way to identify associated functions vs. methods in a structure's implementation is to look for ***`&self`***. Methods will *always* hold the ***`&self`*** parameter, and associated functions *never* will.
+
+The usage of associated functions is simply just like this:
+
+```rust
+// Structure::associated_function(param1, ...);
+
+Rectangle::square(25);
 ```
